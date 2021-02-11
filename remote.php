@@ -146,7 +146,7 @@ function remote_civicrm_themes(&$themes) {
 /**
  * Implements hook_civicrm_mosaicoBaseTemplates().
  */
-function remote_custom_base_civicrm_mosaicoBaseTemplates(&$templates) {
+function remote_civicrm_mosaicoBaseTemplates(&$templates) {
   $templates['remote'] = [
     'name' => 'remote',
     'title' => 'ReMoTe',
