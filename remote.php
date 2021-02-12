@@ -147,12 +147,7 @@ function remote_civicrm_themes(&$themes) {
  * Implements hook_civicrm_mosaicoBaseTemplates().
  */
 function remote_civicrm_mosaicoBaseTemplates(&$templates) {
-  $templates['remote'] = [
-    'name' => 'remote',
-    'title' => 'ReMoTe',
-    'path' => E::url('assets/template-from-scratch.html'),
-    'thumbnail' => E::url('assets/edres/_full.png'),
-  ];
+  CRM_Remote_TemplateConfig::addTemplate($templates);
 }
 
 // --- Functions below this ship commented out. Uncomment as required. ---
