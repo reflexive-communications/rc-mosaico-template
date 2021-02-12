@@ -21,31 +21,18 @@ class CRM_Remote_ConfigTest extends \PHPUnit\Framework\TestCase {
   }
 
   /**
-   * Simple example test case.
-   *
-   * Note how the function name begins with the word "test".
-   */
-  public function testExample() {
-    self::assertTrue(TRUE, "The argument must be true to pass the test");
-  }
-
-  /**
    * Check the templates after the hook function.
    */
   public function testTemplates() {
     $template = CRM_Remote_TemplateConfig::getTemplate();
-    self::assertEquals(4, count($template), "The template has to contain the name, title, path, thumbnail items.");
     self::assertTrue(array_key_exists("name", $template), "The config has to contain the name key.");
-    $expectedName = "remote";
-    self::assertEquals($expectedName, $template["name"], "The name has to be the expected value.");
+    self::assertEquals(CRM_Remote_TemplateConfig::TEMPLATE_NAME, $template["name"], "The name has to be the expected value.");
     self::assertTrue(array_key_exists("title", $template), "The config has to contain the title key.");
-    $expectedTitle = "ReMoTe";
-    self::assertEquals($expectedTitle, $template["title"], "The title has to be the expected value.");
+    self::assertEquals(CRM_Remote_TemplateConfig::TEMPLATE_TITLE, $template["title"], "The title has to be the expected value.");
     self::assertTrue(array_key_exists("path", $template), "The config has to contain the path key.");
-    $expectedPath = "assets/template-from-scratch.html";
-    self::assertEquals($expectedPath, $template["path"], "The path has to be the expected value.");
+    self::assertEquals(CRM_Remote_TemplateConfig::TEMPLATE_PATH, $template["path"], "The path has to be the expected value.");
     self::assertTrue(array_key_exists("thumbnail", $template), "The config has to contain the thumbnail key.");
-    $expectedThumbnail = "assets/edres/_full.png";
-    self::assertEquals($expectedThumbnail, $template["thumbnail"], "The thumbnail has to be the expected value.");
+    self::assertEquals(CRM_Remote_TemplateConfig::TEMPLATE_THUMBNAIL, $template["thumbnail"], "The thumbnail has to be the expected value.");
+    self::assertEquals(4, count($template), "The template has to contain only the name, title, path, thumbnail items.");
   }
 }
