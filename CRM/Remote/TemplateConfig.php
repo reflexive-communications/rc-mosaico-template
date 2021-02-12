@@ -5,15 +5,15 @@
  */
 class CRM_Remote_TemplateConfig {
   /*
-   * Extends the templates with the new one
-   * Implements hook_civicrm_mosaicoBaseTemplates().
+   * It returns the config of our template.
+   * @return array
    */
-  public static function addTemplate(&$templates) {
-    $templates['remote'] = [
+  public static function getTemplate() {
+    return [
       'name' => 'remote',
       'title' => 'ReMoTe',
-      'path' => E::url('assets/template-from-scratch.html'),
-      'thumbnail' => E::url('assets/edres/_full.png'),
+      'path' => 'assets/template-from-scratch.html',
+      'thumbnail' => 'assets/edres/_full.png',
     ];
   }
 }
