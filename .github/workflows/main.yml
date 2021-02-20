@@ -76,6 +76,7 @@ jobs:
 
     - name: Change extensions directory.
       run: |
+          cd "${LOCAL_DEPLOY_TARGET}/${SITE_NAME}"
           cv api Setting.create extensionsDir="[cms.root]/extensions/"
           cv api Setting.create extensionsURL="[cms.root]/extensions/"
 
