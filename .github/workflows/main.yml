@@ -48,6 +48,12 @@ jobs:
           sudo apt-get install libapache2-mod-php7.3
           sudo a2enmod rewrite
 
+    - name: Get DSG application.
+      uses: actions/checkout@v2
+      with:
+          repository: akosgarai/dsg
+          path: dsg
+
     - name: Build drupal site with civicrm.
       env:
         PROJECT_BASE_PATH: ".."
@@ -63,7 +69,6 @@ jobs:
         LOCAL_DEPLOY_TARGET: ${{ env.LOCAL_DEPLOY_TARGET }}
         COMPOSER_APP: composer
       run: |
-          git clone git@github.com:akosgarai/dsg.git
           cd dsg
           sudo mv apache2.conf ${{ env.APACHE_DIR }}/apache2.conf
           ./scripts.sh ci-build --project-base-path "${PROJECT_BASE_PATH}" --project-name "${SITE_NAME}" --db-name "${DB_NAME}" --db-user-name "${DB_USER}" --site-admin-user-name "${SITE_ADMIN_NAME}" --site-admin-password "${SITE_ADMIN_PW}" --apache-conf-dir "${APACHE_CONF_DIR}" --db-host "${DB_HOST}" --db-port "${DB_PORT}" --root-db-user-pw "${MYSQL_DB_PASS}" --local-deploy-target "${LOCAL_DEPLOY_TARGET}" -s --composer-app "${COMPOSER_APP}"
