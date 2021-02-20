@@ -76,6 +76,8 @@ jobs:
 
     - name: Check out the code
       uses: actions/checkout@v2
+      with:
+          path: remote
 
     - name: Move code under extensions directory
       run: |
