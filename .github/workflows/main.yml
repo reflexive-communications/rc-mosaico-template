@@ -92,5 +92,4 @@ jobs:
     - name: Run unit tests
       run: |
           cd ${{ env.LOCAL_DEPLOY_TARGET }}"/"${{ env.SITE_NAME }}"/extensions/remote"
-          phpunit --version
           phpunit ./tests/phpunit/CRM/remote/ConfigTest.php
