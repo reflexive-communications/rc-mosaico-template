@@ -74,14 +74,18 @@ jobs:
           sudo mkdir "${LOCAL_DEPLOY_TARGET}/${SITE_NAME}/extensions"
           sudo chown "www-data:" "${LOCAL_DEPLOY_TARGET}/${SITE_NAME}/extensions"
 
+    - name: Change extensions directory.
+      run: |
+          cv api Setting.create extensionsDir="[cms.root]/extensions/"
+          cv api Setting.create extensionsURL="[cms.root]/extensions/"
+
+
     - name: Check out the code
       uses: actions/checkout@v2
-      with:
-          path: ${{ env.LOCAL_DEPLOY_TARGET }}"/"${{ env.SITE_NAME }}"/extensions"
 
-    - name: Verify extensions directory.
+    - name: Move code under extensions directory
       run: |
-          ls -la ${{ env.LOCAL_DEPLOY_TARGET }}"/"${{ env.SITE_NAME }}"/extensions"
+          sudo mv remote ${{ env.LOCAL_DEPLOY_TARGET }}"/"${{ env.SITE_NAME }}"/extensions"
 
     - name: Run unit tests
       run: |
