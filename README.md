@@ -1,15 +1,17 @@
 # remote
 
+![CI](https://github.com/reflexive-communications/remote/workflows/CI/badge.svg)
+
 ![Screenshot](/images/screenshot.png)
 
-(*FIXME: In one or two paragraphs, describe what the extension does and why one would download it. *)
+This extension installs a new base template to the mosaico email template editor civicrm extension.
 
 The extension is licensed under [AGPL-3.0](LICENSE.txt).
 
 ## Requirements
 
 * PHP v7.2+
-* CiviCRM (*FIXME: Version number*)
+* CiviCRM v5.29+
 
 ## Installation (Web UI)
 
@@ -34,11 +36,3 @@ install it with the command-line tool [cv](https://github.com/civicrm/cv).
 git clone https://github.com/FIXME/remote.git
 cv en remote
 ```
-
-## Getting Started
-
-(* FIXME: Where would a new user navigate to get started? What changes would they see? *)
-
-## Known Issues
-
-(* FIXME *)
