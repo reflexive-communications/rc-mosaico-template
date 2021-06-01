@@ -7,7 +7,7 @@ class CRM_Remote_TemplateConfig
 {
     const TEMPLATE_NAME = 'remote';
     const TEMPLATE_TITLE = 'ReMoTe';
-    const TEMPLATE_PATH = 'assets/template-from-scratch.html';
+    const TEMPLATE_PATH = 'assets/remote-template.html';
     const TEMPLATE_THUMBNAIL = 'assets/edres/_full.png';
     /*
      * It returns the config of our template.
