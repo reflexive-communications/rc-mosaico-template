@@ -5,15 +5,27 @@ on:
         branches: [ main ]
 
 jobs:
+  code-style:
+    name:    Code style check
+    runs-on: ubuntu-18.04
+    steps:
+    - uses: actions/checkout@v2
+    - name: PHP-CS-Fixer
+      uses: docker://oskarstark/php-cs-fixer-ga
+      with:
+        args: --rules=@PSR2 --dry-run -v .
+
   tests:
     name: Unit tests
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-18.04
+    needs:   code-style
     env:
       MYSQL_ROOT_PASSWORD: password
       MYSQL_DATABASE: drupal
       APACHE_DIR: "/etc/apache2"
       SITE_NAME: "composer-site.com"
       LOCAL_DEPLOY_TARGET: "/var/www/html"
+      EXTENSION_NAME: "remote"
     services:
       mysql:
         image: mysql:5.7
@@ -30,7 +42,8 @@ jobs:
       with:
         php-version: '7.3'
         tools: composer:v1, phpunit:8.5.0
-        extensions: cli fpm mysql json opcache mbstring xml gd curl intl
+        extensions: cli fpm mysql json opcache mbstring xml gd curl intl xdebug
+        coverage: xdebug
 
     - name: Start mysql daemon.
       run: |
@@ -44,6 +57,7 @@ jobs:
 
     - name: Basic apache module and config
       run: |
+          sudo add-apt-repository ppa:ondrej/php
           sudo apt-get update
           sudo apt-get install libapache2-mod-php7.3
           sudo a2enmod rewrite
@@ -71,25 +85,32 @@ jobs:
       run: |
           sudo mv dsg/apache2.conf ${{ env.APACHE_DIR }}/apache2.conf
           ./dsg/scripts.sh ci-build --project-base-path "${PROJECT_BASE_PATH}" --project-name "${SITE_NAME}" --db-name "${DB_NAME}" --db-user-name "${DB_USER}" --site-admin-user-name "${SITE_ADMIN_NAME}" --site-admin-password "${SITE_ADMIN_PW}" --apache-conf-dir "${APACHE_CONF_DIR}" --db-host "${DB_HOST}" --db-port "${DB_PORT}" --root-db-user-pw "${MYSQL_DB_PASS}" --local-deploy-target "${LOCAL_DEPLOY_TARGET}" -s --composer-app "${COMPOSER_APP}"
-          sudo mkdir "${LOCAL_DEPLOY_TARGET}/${SITE_NAME}/extensions"
-          sudo chown "www-data:" "${LOCAL_DEPLOY_TARGET}/${SITE_NAME}/extensions"
+
+    - name: Get Mosaico as it is required for this.
+      uses: actions/checkout@v2
+      with:
+          repository: reflexive-communications/uk.co.vedaconsulting.mosaico.git
+          ref: build
+          path: mosaico
+
+    - name: Move mosaico to the extensions directory.
+      run: |
+          sudo mv mosaico ${{ env.LOCAL_DEPLOY_TARGET }}"/"${{ env.SITE_NAME }}"/web/sites/default/files/civicrm/ext"
+          cd ${{ env.LOCAL_DEPLOY_TARGET }}"/"${{ env.SITE_NAME }}
+          cv --no-interaction --cwd=${{ env.LOCAL_DEPLOY_TARGET }}/${{ env.SITE_NAME }} ext:enable mosaico
 
     - name: Check out the code
       uses: actions/checkout@v2
       with:
-          path: remote
+          path: ${{ env.EXTENSION_NAME }}
 
-    - name: Move code under extensions directory
+    - name: Move code under extensions directory and enable extension
       run: |
-          sudo mv remote ${{ env.LOCAL_DEPLOY_TARGET }}"/"${{ env.SITE_NAME }}"/extensions"
-
-    - name: Change extensions directory.
-      run: |
-          cd "${LOCAL_DEPLOY_TARGET}/${SITE_NAME}"
-          cv api Setting.create extensionsDir="[cms.root]/extensions/"
-          cv api Setting.create extensionsURL="[cms.root]/extensions/"
+          sudo mv ${{ env.EXTENSION_NAME }} ${{ env.LOCAL_DEPLOY_TARGET }}"/"${{ env.SITE_NAME }}"/web/sites/default/files/civicrm/ext"
+          cd ${{ env.LOCAL_DEPLOY_TARGET }}"/"${{ env.SITE_NAME }}
+          cv --no-interaction --cwd=${{ env.LOCAL_DEPLOY_TARGET }}/${{ env.SITE_NAME }} ext:enable ${{ env.EXTENSION_NAME }}
 
     - name: Run unit tests
       run: |
-          cd ${{ env.LOCAL_DEPLOY_TARGET }}"/"${{ env.SITE_NAME }}"/extensions/remote"
-          phpunit
+          cd ${{ env.LOCAL_DEPLOY_TARGET }}"/"${{ env.SITE_NAME }}"/web/sites/default/files/civicrm/ext/"${{ env.EXTENSION_NAME }}
+          XDEBUG_MODE=coverage XDEBUG_MODE_COVERAGE=coverage phpunit --verbose --coverage-text
