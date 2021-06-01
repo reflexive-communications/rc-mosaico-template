@@ -3,6 +3,7 @@
 require_once 'remote.civix.php';
 // phpcs:disable
 use CRM_Remote_ExtensionUtil as E;
+
 // phpcs:enable
 
 /**
@@ -10,8 +11,9 @@ use CRM_Remote_ExtensionUtil as E;
  *
  * @link https://docs.civicrm.org/dev/en/latest/hooks/hook_civicrm_config/
  */
-function remote_civicrm_config(&$config) {
-  _remote_civix_civicrm_config($config);
+function remote_civicrm_config(&$config)
+{
+    _remote_civix_civicrm_config($config);
 }
 
 /**
@@ -19,8 +21,9 @@ function remote_civicrm_config(&$config) {
  *
  * @link https://docs.civicrm.org/dev/en/latest/hooks/hook_civicrm_xmlMenu
  */
-function remote_civicrm_xmlMenu(&$files) {
-  _remote_civix_civicrm_xmlMenu($files);
+function remote_civicrm_xmlMenu(&$files)
+{
+    _remote_civix_civicrm_xmlMenu($files);
 }
 
 /**
@@ -28,8 +31,9 @@ function remote_civicrm_xmlMenu(&$files) {
  *
  * @link https://docs.civicrm.org/dev/en/latest/hooks/hook_civicrm_install
  */
-function remote_civicrm_install() {
-  _remote_civix_civicrm_install();
+function remote_civicrm_install()
+{
+    _remote_civix_civicrm_install();
 }
 
 /**
@@ -37,8 +41,9 @@ function remote_civicrm_install() {
  *
  * @link https://docs.civicrm.org/dev/en/latest/hooks/hook_civicrm_postInstall
  */
-function remote_civicrm_postInstall() {
-  _remote_civix_civicrm_postInstall();
+function remote_civicrm_postInstall()
+{
+    _remote_civix_civicrm_postInstall();
 }
 
 /**
@@ -46,8 +51,9 @@ function remote_civicrm_postInstall() {
  *
  * @link https://docs.civicrm.org/dev/en/latest/hooks/hook_civicrm_uninstall
  */
-function remote_civicrm_uninstall() {
-  _remote_civix_civicrm_uninstall();
+function remote_civicrm_uninstall()
+{
+    _remote_civix_civicrm_uninstall();
 }
 
 /**
@@ -55,8 +61,9 @@ function remote_civicrm_uninstall() {
  *
  * @link https://docs.civicrm.org/dev/en/latest/hooks/hook_civicrm_enable
  */
-function remote_civicrm_enable() {
-  _remote_civix_civicrm_enable();
+function remote_civicrm_enable()
+{
+    _remote_civix_civicrm_enable();
 }
 
 /**
@@ -64,8 +71,9 @@ function remote_civicrm_enable() {
  *
  * @link https://docs.civicrm.org/dev/en/latest/hooks/hook_civicrm_disable
  */
-function remote_civicrm_disable() {
-  _remote_civix_civicrm_disable();
+function remote_civicrm_disable()
+{
+    _remote_civix_civicrm_disable();
 }
 
 /**
@@ -73,8 +81,9 @@ function remote_civicrm_disable() {
  *
  * @link https://docs.civicrm.org/dev/en/latest/hooks/hook_civicrm_upgrade
  */
-function remote_civicrm_upgrade($op, CRM_Queue_Queue $queue = NULL) {
-  return _remote_civix_civicrm_upgrade($op, $queue);
+function remote_civicrm_upgrade($op, CRM_Queue_Queue $queue = null)
+{
+    return _remote_civix_civicrm_upgrade($op, $queue);
 }
 
 /**
@@ -85,8 +94,9 @@ function remote_civicrm_upgrade($op, CRM_Queue_Queue $queue = NULL) {
  *
  * @link https://docs.civicrm.org/dev/en/latest/hooks/hook_civicrm_managed
  */
-function remote_civicrm_managed(&$entities) {
-  _remote_civix_civicrm_managed($entities);
+function remote_civicrm_managed(&$entities)
+{
+    _remote_civix_civicrm_managed($entities);
 }
 
 /**
@@ -98,8 +108,9 @@ function remote_civicrm_managed(&$entities) {
  *
  * @link https://docs.civicrm.org/dev/en/latest/hooks/hook_civicrm_caseTypes
  */
-function remote_civicrm_caseTypes(&$caseTypes) {
-  _remote_civix_civicrm_caseTypes($caseTypes);
+function remote_civicrm_caseTypes(&$caseTypes)
+{
+    _remote_civix_civicrm_caseTypes($caseTypes);
 }
 
 /**
@@ -112,8 +123,9 @@ function remote_civicrm_caseTypes(&$caseTypes) {
  *
  * @link https://docs.civicrm.org/dev/en/latest/hooks/hook_civicrm_angularModules
  */
-function remote_civicrm_angularModules(&$angularModules) {
-  _remote_civix_civicrm_angularModules($angularModules);
+function remote_civicrm_angularModules(&$angularModules)
+{
+    _remote_civix_civicrm_angularModules($angularModules);
 }
 
 /**
@@ -121,8 +133,9 @@ function remote_civicrm_angularModules(&$angularModules) {
  *
  * @link https://docs.civicrm.org/dev/en/latest/hooks/hook_civicrm_alterSettingsFolders
  */
-function remote_civicrm_alterSettingsFolders(&$metaDataFolders = NULL) {
-  _remote_civix_civicrm_alterSettingsFolders($metaDataFolders);
+function remote_civicrm_alterSettingsFolders(&$metaDataFolders = null)
+{
+    _remote_civix_civicrm_alterSettingsFolders($metaDataFolders);
 }
 
 /**
@@ -132,25 +145,28 @@ function remote_civicrm_alterSettingsFolders(&$metaDataFolders = NULL) {
  *
  * @link https://docs.civicrm.org/dev/en/latest/hooks/hook_civicrm_entityTypes
  */
-function remote_civicrm_entityTypes(&$entityTypes) {
-  _remote_civix_civicrm_entityTypes($entityTypes);
+function remote_civicrm_entityTypes(&$entityTypes)
+{
+    _remote_civix_civicrm_entityTypes($entityTypes);
 }
 
 /**
  * Implements hook_civicrm_themes().
  */
-function remote_civicrm_themes(&$themes) {
-  _remote_civix_civicrm_themes($themes);
+function remote_civicrm_themes(&$themes)
+{
+    _remote_civix_civicrm_themes($themes);
 }
 
 /**
  * Implements hook_civicrm_mosaicoBaseTemplates().
  */
-function remote_civicrm_mosaicoBaseTemplates(&$templates) {
-  $newTemplate = CRM_Remote_TemplateConfig::getTemplate();
-  $newTemplate['path'] = E::url($newTemplate['path']);
-  $newTemplate['thumbnail'] = E::url($newTemplate['thumbnail']);
-  $templates[$newTemplate['name']] = $newTemplate;
+function remote_civicrm_mosaicoBaseTemplates(&$templates)
+{
+    $newTemplate = CRM_Remote_TemplateConfig::getTemplate();
+    $newTemplate['path'] = E::url($newTemplate['path']);
+    $newTemplate['thumbnail'] = E::url($newTemplate['thumbnail']);
+    $templates[$newTemplate['name']] = $newTemplate;
 }
 
 // --- Functions below this ship commented out. Uncomment as required. ---
