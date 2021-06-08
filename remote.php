@@ -168,6 +168,13 @@ function remote_civicrm_mosaicoBaseTemplates(&$templates)
     $newTemplate['thumbnail'] = E::url($newTemplate['thumbnail']);
     $templates[$newTemplate['name']] = $newTemplate;
 }
+/**
+ * Implements hook_civicrm_mosaicoConfig().
+ */
+function remote_civicrm_mosaicoConfig(&$config)
+{
+  $config['tinymceConfig']['forced_root_block'] ='div';
+}
 
 // --- Functions below this ship commented out. Uncomment as required. ---
 
