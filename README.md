@@ -26,6 +26,7 @@ cv en remote
 ![New base template](./assets/docs/base-template.png)
 
 **The list block**
+
 ![List block](./assets/edres/listBlock.png)
 
 **Mail preview**
