@@ -173,7 +173,7 @@ function remote_civicrm_mosaicoBaseTemplates(&$templates)
  */
 function remote_civicrm_mosaicoConfig(&$config)
 {
-  $config['tinymceConfig']['forced_root_block'] ='div';
+    $config['tinymceConfig']['forced_root_block'] ='div';
 }
 
 // --- Functions below this ship commented out. Uncomment as required. ---
