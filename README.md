@@ -2,7 +2,7 @@
 
 ![CI](https://github.com/reflexive-communications/remote/workflows/CI/badge.svg)
 
-This extension installs a new base template to the mosaico email template editor civicrm extension. The template is based on the `versafix-1` template, but the `p` html tags have been replaced with `divs`. It was necessary to support the align of the texts. As we experienced, the alignment changes were not applied on the `p` tags. It also provides a new block in the editor for lists.
+This extension installs a new base template to the mosaico email template editor civicrm extension. The template is based on the `versafix-1` template, but the `p` html tags have been replaced with `div`. It was necessary to support the align of the texts. As we experienced, the alignment changes were not applied on the `p` tags. It also provides a new block in the editor for lists.
 
 The extension is licensed under [AGPL-3.0](LICENSE.txt).
 
