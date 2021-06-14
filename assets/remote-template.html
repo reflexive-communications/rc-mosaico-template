@@ -150,6 +150,8 @@
       doubleArticleBlock { label: 2 Columns Block; properties: backgroundColor titleVisible=true buttonVisible=true imageVisible=true titleTextStyle longTextStyle buttonStyle  leftImage  leftLongText leftButtonLink rightImage  rightLongText rightButtonLink; theme: contentTheme}
 
       tripleArticleBlock { label: 3 Columns Block; properties: backgroundColor titleVisible=true buttonVisible=true imageVisible=true titleTextStyle longTextStyle buttonStyle  leftImage  leftLongText leftButtonLink middleImage  middleLongText middleButtonLink rightImage  rightLongText rightButtonLink; theme: contentTheme}
+
+      listBlock { label: Text Block; properties: backgroundColor longTextStyle longText; theme: contentTheme}
       
       logoBlock imageWidth { label: Image Size; widget: select; options: 166=Small|258=Medium|350=Big; variant:imageWidth;}
       logoBlock { label: Logo Block; properties: image imageWidth=258; variant: imageWidth; theme: contentTheme}
@@ -194,6 +196,7 @@
       buttonBlock:preview,
       titleBlock:preview,
       socialshareBlock:preview { -ko-background-color: @[backgroundColor] }
+      listBlock:preview,
     }
   </style>
   <style type="text/css" data-inline="true">
@@ -333,6 +336,18 @@
     [data-ko-block=textBlock] .long-text p { Margin: 1em 0px; }
     [data-ko-block=textBlock] .long-text p:last-child { Margin-bottom: 0px; }
     [data-ko-block=textBlock] .long-text p:first-child { Margin-top: 0px; }
+
+    [data-ko-block=listBlock] .links-color a, 
+    [data-ko-block=listBlock] .links-color a:link, 
+    [data-ko-block=listBlock] .links-color a:visited,
+    [data-ko-block=listBlock] .links-color a:hover {
+      color: #3f3f3f;
+      -ko-color: @longTextStyle.linksColor;
+      text-decoration: underline;
+    }
+    [data-ko-block=listBlock] .long-text p { Margin: 1em 0px; }
+    [data-ko-block=listBlock] .long-text p:last-child { Margin-bottom: 0px; }
+    [data-ko-block=listBlock] .long-text p:first-child { Margin-top: 0px; }
 
     [data-ko-block=sideArticleBlock] .links-color a, 
     [data-ko-block=sideArticleBlock] .links-color a:link, 
@@ -551,7 +566,7 @@
                         <td style="font-size: 18px; font-family: Arial, Helvetica, sans-serif; color: #3f3f3f; text-align:left;
                           -ko-font-size: @[titleTextStyle.size]px; -ko-font-family: @titleTextStyle.face; -ko-color: @titleTextStyle.color">
                           <span style="color: #3f3f3f; -ko-color: @titleTextStyle.color" data-ko-editable="titleText">
-                          Title
+                          Cím
                           </span>
                         </td>
                       </tr>
@@ -559,7 +574,7 @@
                         <td align="left" style="text-align: left; font-size: 13px; font-family: Arial, Helvetica, sans-serif; color: #3f3f3f;
                           -ko-font-size: @[longTextStyle.size]px; -ko-font-family: @longTextStyle.face; -ko-color: @longTextStyle.color"
                           data-ko-editable="longText" class="long-text links-color">
-                          <div>Far far away, behind the word mountains, far from the countries <a href="">Vokalia and Consonantia</a>, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean. A small river named Duden flows by their place and supplies it with the necessary regelialia.</div>
+                            <div>Ide bármi leírható, ami érdekes lehet. Akár többször is. Viszont, ha felsorolást szeretnél használni, válaszd ki a blokkok közül a <strong>felsorolás</strong> blokkot.<br />Kellemes szerkesztést!</div>
                         </td>
                       </tr>
                       <tr data-ko-display="buttonVisible">
@@ -638,7 +653,7 @@
               <td style="font-size: 18px; font-family: Arial, Helvetica, sans-serif; color: #3f3f3f; text-align:left;
                 -ko-font-size: @[titleTextStyle.size]px; -ko-font-family: @titleTextStyle.face; -ko-color: @titleTextStyle.color">
                 <span style="color: #3f3f3f; -ko-color: @titleTextStyle.color" data-ko-editable="text">
-               Section Title
+               Alcím
                 </span>
               </td>
             </tr>
@@ -649,7 +664,7 @@
               <td align="left" style="text-align: left; font-size: 13px; font-family: Arial, Helvetica, sans-serif; color: #3f3f3f;
                 -ko-font-size: @[longTextStyle.size]px; -ko-font-family: @longTextStyle.face; -ko-color: @longTextStyle.color"
                 data-ko-editable="longText" class="long-text links-color">
-                <div>Far far away, behind the word mountains, far from the countries <a href="">Vokalia and Consonantia</a>, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean. A small river named Duden flows by their place and supplies it with the necessary regelialia.</div>
+                <div>Ide bármi leírható, ami érdekes lehet. Akár többször is. Viszont, ha felsorolást szeretnél használni, válaszd ki a blokkok közül a <em>felsorolás</em> blokkot.<br />Kellemes szerkesztést!</div>
               </td>
             </tr>
             <tr data-ko-display="buttonVisible">
@@ -697,7 +712,7 @@
               style="background-color: #ffffff; font-size: 22px; font-family: Arial, Helvetica, sans-serif; color: #3f3f3f; text-align: center;
               -ko-attr-align: @bigTitleStyle.align; -ko-attr-bgcolor: @backgroundColor; -ko-background-color: @backgroundColor;
               -ko-font-size: @[bigTitleStyle.size]px; -ko-font-family: @bigTitleStyle.face; -ko-color: @bigTitleStyle.color; -ko-text-align: @bigTitleStyle.align">
-              <span data-ko-editable="text">Section Title</span>
+              <span data-ko-editable="text">Alcím</span>
             </td>
           </tr>
         </table>
@@ -723,8 +738,7 @@
             <td align="left" style="text-align: left; font-size: 13px; font-family: Arial, Helvetica, sans-serif; color: #3f3f3f;
               -ko-font-size: @[longTextStyle.size]px; -ko-font-family: @longTextStyle.face; -ko-color: @longTextStyle.color"
               data-ko-editable="longText" class="long-text links-color">
-              <div>Far far away, behind the word mountains, far from the countries <a href="">Vokalia and Consonantia</a>, there live the blind texts.</div>
-              <div>Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean. A small river named Duden flows by their place and supplies it with the necessary regelialia.</div>
+              <div>Ide bármi leírható, ami érdekes lehet. Akár többször is. Viszont, ha felsorolást szeretnél használni, válaszd ki a blokkok közül a <em>felsorolás</em> blokkot.<br />Kellemes szerkesztést!</div>
             </td>
           </tr>
         </table>
@@ -767,7 +781,7 @@
                       <tr data-ko-display="titleVisible">
                         <td style="font-size: 18px; font-family: Arial, Helvetica, sans-serif; color: #3f3f3f; text-align:left;
                           -ko-font-size: @[titleTextStyle.size]px; -ko-font-family: @titleTextStyle.face; -ko-color: @titleTextStyle.color">
-                          <span style="color: #3f3f3f; -ko-color: @titleTextStyle.color" data-ko-editable="leftTitleText">Title
+                          <span style="color: #3f3f3f; -ko-color: @titleTextStyle.color" data-ko-editable="leftTitleText">Cím
                           </span>
                         </td>
                       </tr>
@@ -775,7 +789,7 @@
                         <td align="left" style="text-align: left; font-size: 13px; font-family: Arial, Helvetica, sans-serif; color: #3f3f3f; 
                           -ko-font-size: @[longTextStyle.size]px; -ko-font-family: @longTextStyle.face; -ko-color: @longTextStyle.color"
                           data-ko-editable="leftLongText" class="long-text links-color">
-                          <div>Far far away, behind the word mountains, far from the countries <a href="">Vokalia and Consonantia</a>, there live the blind texts. </div>
+                          <div>Ide bármi leírható, ami érdekes lehet. Akár többször is. Viszont, ha felsorolást szeretnél használni, válaszd ki a blokkok közül a felsorolás blokkot.<br />Kellemes szerkesztést!</div>
                         </td>
                       </tr>
                       <tr data-ko-display="buttonVisible">
@@ -816,7 +830,7 @@
                         <td style="font-size: 18px; font-family: Arial, Helvetica, sans-serif; color: #3f3f3f; text-align:left;
                           -ko-font-size: @[titleTextStyle.size]px; -ko-font-family: @titleTextStyle.face; -ko-color: @titleTextStyle.color">
                           <span style="color: #3f3f3f; -ko-color: @titleTextStyle.color"  data-ko-editable="middleTitleText">
-                         Title
+                         Cím
                           </span>
                         </td>
                       </tr>
@@ -824,7 +838,7 @@
                         <td align="left" style="text-align: left; font-size: 13px; font-family: Arial, Helvetica, sans-serif; color: #3f3f3f;
                           -ko-font-size: @[longTextStyle.size]px; -ko-font-family: @longTextStyle.face; -ko-color: @longTextStyle.color"
                           data-ko-editable="middleLongText" class="long-text links-color">
-                          <div>Far far away, behind the word mountains, far from the countries <a href="">Vokalia and Consonantia</a>, there live the blind texts. </div>
+                          <div>Ide bármi leírható, ami érdekes lehet. Akár többször is. Viszont, ha felsorolást szeretnél használni, válaszd ki a blokkok közül a felsorolás blokkot.<br />Kellemes szerkesztést!</div>
                         </td>
                       </tr>
                       <tr data-ko-display="buttonVisible">
@@ -865,7 +879,7 @@
                         <td style="font-size: 18px; font-family: Arial, Helvetica, sans-serif; color: #3f3f3f; text-align:left;
                           -ko-font-size: @[titleTextStyle.size]px; -ko-font-family: @titleTextStyle.face; -ko-color: @titleTextStyle.color">
                           <span style="color: #3f3f3f; -ko-color: @titleTextStyle.color" data-ko-editable="rightTitleText">
-                         Title
+                         Cím
                           </span>
                         </td>
                       </tr>
@@ -873,7 +887,7 @@
                         <td align="left" style="text-align: left; font-size: 13px; font-family: Arial, Helvetica, sans-serif; color: #3f3f3f;
                           -ko-font-size: @[longTextStyle.size]px; -ko-font-family: @longTextStyle.face; -ko-color: @longTextStyle.color"
                           data-ko-editable="rightLongText" class="long-text links-color">
-                          <div>Far far away, behind the word mountains, far from the countries <a href="">Vokalia and Consonantia</a>, there live the blind texts. </div>
+                          <div>Ide bármi leírható, ami érdekes lehet. Akár többször is. Viszont, ha felsorolást szeretnél használni, válaszd ki a blokkok közül a felsorolás blokkot.<br />Kellemes szerkesztést!</div>
                         </td>
                       </tr>
                       <tr data-ko-display="buttonVisible">
@@ -942,7 +956,7 @@
                         <td style="font-size: 18px; font-family: Arial, Helvetica, sans-serif; color: #3f3f3f; text-align:left;
                           -ko-font-size: @[titleTextStyle.size]px; -ko-font-family: @titleTextStyle.face; -ko-color: @titleTextStyle.color">
                           <span style="color: #3f3f3f; -ko-color: @titleTextStyle.color" data-ko-editable="leftTitleText">
-                          Title
+                          Cím
                           </span>
                         </td>
                       </tr>
@@ -950,7 +964,7 @@
                         <td align="left" style="text-align: left; font-size: 13px; font-family: Arial, Helvetica, sans-serif; color: #3f3f3f;
                           -ko-font-size: @[longTextStyle.size]px; -ko-font-family: @longTextStyle.face; -ko-color: @longTextStyle.color"
                           data-ko-editable="leftLongText" class="long-text links-color">
-                          <div>Far far away, behind the word mountains, far from the countries <a href="">Vokalia and Consonantia</a>, there live the blind texts. </div>
+                          <div>Ide bármi leírható, ami érdekes lehet. Akár többször is. Viszont, ha felsorolást szeretnél használni, válaszd ki a blokkok közül a felsorolás blokkot.<br />Kellemes szerkesztést!</div>
                         </td>
                       </tr>
                       <tr data-ko-display="buttonVisible">
@@ -991,7 +1005,7 @@
                         <td style="font-size: 18px; font-family: Arial, Helvetica, sans-serif; color: #3f3f3f; text-align:left;
                           -ko-font-size: @[titleTextStyle.size]px; -ko-font-family: @titleTextStyle.face; -ko-color: @titleTextStyle.color">
                           <span style="color: #3f3f3f; -ko-color: @titleTextStyle.color" data-ko-editable="rightTitleText">
-                         Title
+                         Cím
                           </span>
                         </td>
                       </tr>
@@ -999,7 +1013,7 @@
                         <td align="left" style="text-align: left; font-size: 13px; font-family: Arial, Helvetica, sans-serif; color: #3f3f3f;
                           -ko-font-size: @[longTextStyle.size]px; -ko-font-family: @longTextStyle.face; -ko-color: @longTextStyle.color"
                           data-ko-editable="rightLongText" class="long-text links-color">
-                          <div>Far far away, behind the word mountains, far from the countries <a href="">Vokalia and Consonantia</a>, there live the blind texts.</div>
+                          <div>Ide bármi leírható, ami érdekes lehet. Akár többször is. Viszont, ha felsorolást szeretnél használni, válaszd ki a blokkok közül a felsorolás blokkot.<br />Kellemes szerkesztést!</div>
                         </td>
                       </tr>
                       <tr data-ko-display="buttonVisible">
@@ -1034,6 +1048,37 @@
     </tr>
   </table>
   <!-- /doubleArticleBlock -->
+
+  <!-- listBlock -->
+  <table class="vb-outer" width="100%" cellpadding="0" border="0" cellspacing="0" bgcolor="#bfbfbf"
+    style="background-color: #bfbfbf; -ko-background-color: @externalBackgroundColor; -ko-attr-bgcolor: @externalBackgroundColor" data-ko-block="listBlock">
+    <tr>
+      <td class="vb-outer" align="center" valign="top" bgcolor="#bfbfbf"
+        style="background-color: #bfbfbf; -ko-background-color: @externalBackgroundColor; -ko-attr-bgcolor: @externalBackgroundColor">
+
+<!--[if (gte mso 9)|(lte ie 8)]><table align="center" border="0" cellspacing="0" cellpadding="0" width="570"><tr><td align="center" valign="top"><![endif]-->
+        <div class="oldwebkit">
+        <table width="570" border="0" cellpadding="0" cellspacing="18" class="vb-container fullpad" bgcolor="#ffffff" 
+          style="width: 100%; max-width: 570px; background-color: #ffffff; -ko-attr-bgcolor: @backgroundColor; -ko-background-color: @backgroundColor;">
+          <tr>
+            <td align="left" style="text-align: left; font-size: 13px; font-family: Arial, Helvetica, sans-serif; color: #3f3f3f;
+              -ko-font-size: @[longTextStyle.size]px; -ko-font-family: @longTextStyle.face; -ko-color: @longTextStyle.color"
+              data-ko-editable="longText" class="long-text links-color">
+              <ul>
+                <li>Ha felsorolást szeretnél válaszd ezt az opciót. Itt megadhatsz egy</li>
+                <li>kettő</li>
+                <li>három</li>
+                <li>vagy még több listaelemet.</li>
+              </ul>
+            </td>
+          </tr>
+        </table>
+        </div>
+<!--[if (gte mso 9)|(lte ie 8)]></td></tr></table><![endif]-->
+      </td>
+    </tr>
+  </table>
+  <!-- /listBlock -->
 
   <!-- hrBlock -->
   <table class="vb-outer" width="100%" cellpadding="0" border="0" cellspacing="0" bgcolor="#bfbfbf"
