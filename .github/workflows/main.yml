@@ -50,7 +50,7 @@ jobs:
         with:
           repository: reflexive-communications/uk.co.vedaconsulting.mosaico
           path: uk.co.vedaconsulting.mosaico
-          ref: build
+          ref: build-2-8
 
       - name: Self checkout
         uses: actions/checkout@v3
