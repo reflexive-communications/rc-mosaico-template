@@ -16,8 +16,8 @@
             <!-- Skip test directory -->
             <directory>./tests</directory>
             <!-- Skip generated files -->
-            <file>./remote.php</file>
-            <file>./remote.civix.php</file>
+            <file>./rc_mosaico_template.php</file>
+            <file>./rc_mosaico_template.civix.php</file>
         </exclude>
     </coverage>
     <testsuites>
