@@ -1,13 +1,13 @@
 <?php
 
 /*
- * class CRM_Remote_TemplateConfig
+ * class CRM_RcMosaicoTemplate_TemplateConfig
  */
-class CRM_Remote_TemplateConfig
+class CRM_RcMosaicoTemplate_TemplateConfig
 {
-    const TEMPLATE_NAME = 'remote';
-    const TEMPLATE_TITLE = 'ReMoTe';
-    const TEMPLATE_PATH = 'assets/remote-template.html';
+    const TEMPLATE_NAME = 'rc-base';
+    const TEMPLATE_TITLE = 'RC Base Template';
+    const TEMPLATE_PATH = 'assets/rc-base-template.html';
     const TEMPLATE_THUMBNAIL = 'assets/edres/_full.png';
     /*
      * It returns the config of our template.

@@ -6,7 +6,7 @@ on:
 env:
   WEBROOT: "/srv/www"
   CIVI_DIR: "civi-zero"
-  EXTENSION_NAME: "remote"
+  EXTENSION_NAME: "rc-mosaico-template"
 jobs:
   code-style:
     name: Code style check
