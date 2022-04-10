@@ -6,11 +6,11 @@
  * The ExtensionUtil class provides small stubs for accessing resources of this
  * extension.
  */
-class CRM_Remote_ExtensionUtil
+class CRM_RcMosaicoTemplate_ExtensionUtil
 {
-    const SHORT_NAME = 'remote';
-    const LONG_NAME = 'remote';
-    const CLASS_PREFIX = 'CRM_Remote';
+    const SHORT_NAME = 'rc_mosaico_template';
+    const LONG_NAME = 'rc-mosaico-template';
+    const CLASS_PREFIX = 'CRM_RcMosaicoTemplate';
 
     /**
      * Translate a string using the extension's domain.
@@ -21,6 +21,7 @@ class CRM_Remote_ExtensionUtil
      * @param string $text
      *   Canonical message text (generally en_US).
      * @param array $params
+     *
      * @return string
      *   Translated text.
      * @see ts
@@ -39,6 +40,7 @@ class CRM_Remote_ExtensionUtil
      * @param string|NULL $file
      *   Ex: NULL.
      *   Ex: 'css/foo.css'.
+     *
      * @return string
      *   Ex: 'http://example.org/sites/default/ext/org.example.foo'.
      *   Ex: 'http://example.org/sites/default/ext/org.example.foo/css/foo.css'.
@@ -57,6 +59,7 @@ class CRM_Remote_ExtensionUtil
      * @param string|NULL $file
      *   Ex: NULL.
      *   Ex: 'css/foo.css'.
+     *
      * @return string
      *   Ex: '/var/www/example.org/sites/default/ext/org.example.foo'.
      *   Ex: '/var/www/example.org/sites/default/ext/org.example.foo/css/foo.css'.
@@ -64,7 +67,7 @@ class CRM_Remote_ExtensionUtil
     public static function path($file = null)
     {
         // return CRM_Core_Resources::singleton()->getPath(self::LONG_NAME, $file);
-        return __DIR__ . ($file === null ? '' : (DIRECTORY_SEPARATOR . $file));
+        return __DIR__.($file === null ? '' : (DIRECTORY_SEPARATOR.$file));
     }
 
     /**
@@ -72,23 +75,24 @@ class CRM_Remote_ExtensionUtil
      *
      * @param string $suffix
      *   Ex: 'Page_HelloWorld' or 'Page\\HelloWorld'.
+     *
      * @return string
      *   Ex: 'CRM_Foo_Page_HelloWorld'.
      */
     public static function findClass($suffix)
     {
-        return self::CLASS_PREFIX . '_' . str_replace('\\', '_', $suffix);
+        return self::CLASS_PREFIX.'_'.str_replace('\\', '_', $suffix);
     }
 }
 
-use CRM_Remote_ExtensionUtil as E;
+use CRM_RcMosaicoTemplate_ExtensionUtil as E;
 
 /**
  * (Delegated) Implements hook_civicrm_config().
  *
  * @link https://docs.civicrm.org/dev/en/latest/hooks/hook_civicrm_config
  */
-function _remote_civix_civicrm_config(&$config = null)
+function _rc_mosaico_template_civix_civicrm_config(&$config = null)
 {
     static $configured = false;
     if ($configured) {
@@ -96,10 +100,10 @@ function _remote_civix_civicrm_config(&$config = null)
     }
     $configured = true;
 
-    $template =& CRM_Core_Smarty::singleton();
+    $template = CRM_Core_Smarty::singleton();
 
-    $extRoot = dirname(__FILE__) . DIRECTORY_SEPARATOR;
-    $extDir = $extRoot . 'templates';
+    $extRoot = __DIR__.DIRECTORY_SEPARATOR;
+    $extDir = $extRoot.'templates';
 
     if (is_array($template->template_dir)) {
         array_unshift($template->template_dir, $extDir);
@@ -107,7 +111,7 @@ function _remote_civix_civicrm_config(&$config = null)
         $template->template_dir = [$extDir, $template->template_dir];
     }
 
-    $include_path = $extRoot . PATH_SEPARATOR . get_include_path();
+    $include_path = $extRoot.PATH_SEPARATOR.get_include_path();
     set_include_path($include_path);
 }
 
@@ -118,9 +122,9 @@ function _remote_civix_civicrm_config(&$config = null)
  *
  * @link https://docs.civicrm.org/dev/en/latest/hooks/hook_civicrm_xmlMenu
  */
-function _remote_civix_civicrm_xmlMenu(&$files)
+function _rc_mosaico_template_civix_civicrm_xmlMenu(&$files)
 {
-    foreach (_remote_civix_glob(__DIR__ . '/xml/Menu/*.xml') as $file) {
+    foreach (_rc_mosaico_template_civix_glob(__DIR__.'/xml/Menu/*.xml') as $file) {
         $files[] = $file;
     }
 }
@@ -130,10 +134,10 @@ function _remote_civix_civicrm_xmlMenu(&$files)
  *
  * @link https://docs.civicrm.org/dev/en/latest/hooks/hook_civicrm_install
  */
-function _remote_civix_civicrm_install()
+function _rc_mosaico_template_civix_civicrm_install()
 {
-    _remote_civix_civicrm_config();
-    if ($upgrader = _remote_civix_upgrader()) {
+    _rc_mosaico_template_civix_civicrm_config();
+    if ($upgrader = _rc_mosaico_template_civix_upgrader()) {
         $upgrader->onInstall();
     }
 }
@@ -143,10 +147,10 @@ function _remote_civix_civicrm_install()
  *
  * @link https://docs.civicrm.org/dev/en/latest/hooks/hook_civicrm_postInstall
  */
-function _remote_civix_civicrm_postInstall()
+function _rc_mosaico_template_civix_civicrm_postInstall()
 {
-    _remote_civix_civicrm_config();
-    if ($upgrader = _remote_civix_upgrader()) {
+    _rc_mosaico_template_civix_civicrm_config();
+    if ($upgrader = _rc_mosaico_template_civix_upgrader()) {
         if (is_callable([$upgrader, 'onPostInstall'])) {
             $upgrader->onPostInstall();
         }
@@ -158,10 +162,10 @@ function _remote_civix_civicrm_postInstall()
  *
  * @link https://docs.civicrm.org/dev/en/latest/hooks/hook_civicrm_uninstall
  */
-function _remote_civix_civicrm_uninstall()
+function _rc_mosaico_template_civix_civicrm_uninstall()
 {
-    _remote_civix_civicrm_config();
-    if ($upgrader = _remote_civix_upgrader()) {
+    _rc_mosaico_template_civix_civicrm_config();
+    if ($upgrader = _rc_mosaico_template_civix_upgrader()) {
         $upgrader->onUninstall();
     }
 }
@@ -171,10 +175,10 @@ function _remote_civix_civicrm_uninstall()
  *
  * @link https://docs.civicrm.org/dev/en/latest/hooks/hook_civicrm_enable
  */
-function _remote_civix_civicrm_enable()
+function _rc_mosaico_template_civix_civicrm_enable()
 {
-    _remote_civix_civicrm_config();
-    if ($upgrader = _remote_civix_upgrader()) {
+    _rc_mosaico_template_civix_civicrm_config();
+    if ($upgrader = _rc_mosaico_template_civix_upgrader()) {
         if (is_callable([$upgrader, 'onEnable'])) {
             $upgrader->onEnable();
         }
@@ -187,10 +191,10 @@ function _remote_civix_civicrm_enable()
  * @link https://docs.civicrm.org/dev/en/latest/hooks/hook_civicrm_disable
  * @return mixed
  */
-function _remote_civix_civicrm_disable()
+function _rc_mosaico_template_civix_civicrm_disable()
 {
-    _remote_civix_civicrm_config();
-    if ($upgrader = _remote_civix_upgrader()) {
+    _rc_mosaico_template_civix_civicrm_config();
+    if ($upgrader = _rc_mosaico_template_civix_upgrader()) {
         if (is_callable([$upgrader, 'onDisable'])) {
             $upgrader->onDisable();
         }
@@ -209,22 +213,22 @@ function _remote_civix_civicrm_disable()
  *
  * @link https://docs.civicrm.org/dev/en/latest/hooks/hook_civicrm_upgrade
  */
-function _remote_civix_civicrm_upgrade($op, CRM_Queue_Queue $queue = null)
+function _rc_mosaico_template_civix_civicrm_upgrade($op, CRM_Queue_Queue $queue = null)
 {
-    if ($upgrader = _remote_civix_upgrader()) {
+    if ($upgrader = _rc_mosaico_template_civix_upgrader()) {
         return $upgrader->onUpgrade($op, $queue);
     }
 }
 
 /**
- * @return CRM_Remote_Upgrader
+ * @return CRM_RcMosaicoTemplate_Upgrader
  */
-function _remote_civix_upgrader()
+function _rc_mosaico_template_civix_upgrader()
 {
     if (!file_exists(__DIR__.'/CRM/RcMosaicoTemplate/Upgrader.php')) {
         return null;
     } else {
-        return CRM_Remote_Upgrader_Base::instance();
+        return CRM_RcMosaicoTemplate_Upgrader_Base::instance();
     }
 }
 
@@ -232,40 +236,17 @@ function _remote_civix_upgrader()
  * Search directory tree for files which match a glob pattern.
  *
  * Note: Dot-directories (like "..", ".git", or ".svn") will be ignored.
- * Note: In Civi 4.3+, delegate to CRM_Utils_File::findFiles()
+ * Note: Delegate to CRM_Utils_File::findFiles(), this function kept only
+ * for backward compatibility of extension code that uses it.
  *
  * @param string $dir base dir
  * @param string $pattern , glob pattern, eg "*.txt"
  *
  * @return array
  */
-function _remote_civix_find_files($dir, $pattern)
+function _rc_mosaico_template_civix_find_files($dir, $pattern)
 {
-    if (is_callable(['CRM_Utils_File', 'findFiles'])) {
-        return CRM_Utils_File::findFiles($dir, $pattern);
-    }
-
-    $todos = [$dir];
-    $result = [];
-    while (!empty($todos)) {
-        $subdir = array_shift($todos);
-        foreach (_remote_civix_glob("$subdir/$pattern") as $match) {
-            if (!is_dir($match)) {
-                $result[] = $match;
-            }
-        }
-        if ($dh = opendir($subdir)) {
-            while (false !== ($entry = readdir($dh))) {
-                $path = $subdir . DIRECTORY_SEPARATOR . $entry;
-                if ($entry[0] == '.') {
-                } elseif (is_dir($path)) {
-                    $todos[] = $path;
-                }
-            }
-            closedir($dh);
-        }
-    }
-    return $result;
+    return CRM_Utils_File::findFiles($dir, $pattern);
 }
 
 /**
@@ -275,9 +256,9 @@ function _remote_civix_find_files($dir, $pattern)
  *
  * @link https://docs.civicrm.org/dev/en/latest/hooks/hook_civicrm_managed
  */
-function _remote_civix_civicrm_managed(&$entities)
+function _rc_mosaico_template_civix_civicrm_managed(&$entities)
 {
-    $mgdFiles = _remote_civix_find_files(__DIR__, '*.mgd.php');
+    $mgdFiles = _rc_mosaico_template_civix_find_files(__DIR__, '*.mgd.php');
     sort($mgdFiles);
     foreach ($mgdFiles as $file) {
         $es = include $file;
@@ -302,23 +283,23 @@ function _remote_civix_civicrm_managed(&$entities)
  *
  * @link https://docs.civicrm.org/dev/en/latest/hooks/hook_civicrm_caseTypes
  */
-function _remote_civix_civicrm_caseTypes(&$caseTypes)
+function _rc_mosaico_template_civix_civicrm_caseTypes(&$caseTypes)
 {
-    if (!is_dir(__DIR__ . '/xml/case')) {
+    if (!is_dir(__DIR__.'/xml/case')) {
         return;
     }
 
-    foreach (_remote_civix_glob(__DIR__ . '/xml/case/*.xml') as $file) {
+    foreach (_rc_mosaico_template_civix_glob(__DIR__.'/xml/case/*.xml') as $file) {
         $name = preg_replace('/\.xml$/', '', basename($file));
         if ($name != CRM_Case_XMLProcessor::mungeCaseType($name)) {
             $errorMessage = sprintf("Case-type file name is malformed (%s vs %s)", $name, CRM_Case_XMLProcessor::mungeCaseType($name));
             throw new CRM_Core_Exception($errorMessage);
         }
         $caseTypes[$name] = [
-      'module' => E::LONG_NAME,
-      'name' => $name,
-      'file' => $file,
-    ];
+            'module' => E::LONG_NAME,
+            'name' => $name,
+            'file' => $file,
+        ];
     }
 }
 
@@ -331,13 +312,13 @@ function _remote_civix_civicrm_caseTypes(&$caseTypes)
  *
  * @link https://docs.civicrm.org/dev/en/latest/hooks/hook_civicrm_angularModules
  */
-function _remote_civix_civicrm_angularModules(&$angularModules)
+function _rc_mosaico_template_civix_civicrm_angularModules(&$angularModules)
 {
-    if (!is_dir(__DIR__ . '/ang')) {
+    if (!is_dir(__DIR__.'/ang')) {
         return;
     }
 
-    $files = _remote_civix_glob(__DIR__ . '/ang/*.ang.php');
+    $files = _rc_mosaico_template_civix_glob(__DIR__.'/ang/*.ang.php');
     foreach ($files as $file) {
         $name = preg_replace(':\.ang\.php$:', '', basename($file));
         $module = include $file;
@@ -353,9 +334,9 @@ function _remote_civix_civicrm_angularModules(&$angularModules)
  *
  * Find any and return any files matching "*.theme.php"
  */
-function _remote_civix_civicrm_themes(&$themes)
+function _rc_mosaico_template_civix_civicrm_themes(&$themes)
 {
-    $files = _remote_civix_glob(__DIR__ . '/*.theme.php');
+    $files = _rc_mosaico_template_civix_glob(__DIR__.'/*.theme.php');
     foreach ($files as $file) {
         $themeMeta = include $file;
         if (empty($themeMeta['name'])) {
@@ -377,11 +358,12 @@ function _remote_civix_civicrm_themes(&$themes)
  * This wrapper provides consistency.
  *
  * @link http://php.net/glob
+ *
  * @param string $pattern
  *
  * @return array
  */
-function _remote_civix_glob($pattern)
+function _rc_mosaico_template_civix_glob($pattern)
 {
     $result = glob($pattern);
     return is_array($result) ? $result : [];
@@ -398,16 +380,16 @@ function _remote_civix_glob($pattern)
  *
  * @return bool
  */
-function _remote_civix_insert_navigation_menu(&$menu, $path, $item)
+function _rc_mosaico_template_civix_insert_navigation_menu(&$menu, $path, $item)
 {
     // If we are done going down the path, insert menu
     if (empty($path)) {
         $menu[] = [
-      'attributes' => array_merge([
-        'label'      => CRM_Utils_Array::value('name', $item),
-        'active'     => 1,
-      ], $item),
-    ];
+            'attributes' => array_merge([
+                'label' => CRM_Utils_Array::value('name', $item),
+                'active' => 1,
+            ], $item),
+        ];
         return true;
     } else {
         // Find an recurse into the next level down
@@ -419,7 +401,7 @@ function _remote_civix_insert_navigation_menu(&$menu, $path, $item)
                 if (!isset($entry['child'])) {
                     $entry['child'] = [];
                 }
-                $found = _remote_civix_insert_navigation_menu($entry['child'], implode('/', $path), $item);
+                $found = _rc_mosaico_template_civix_insert_navigation_menu($entry['child'], implode('/', $path), $item);
             }
         }
         return $found;
@@ -429,10 +411,10 @@ function _remote_civix_insert_navigation_menu(&$menu, $path, $item)
 /**
  * (Delegated) Implements hook_civicrm_navigationMenu().
  */
-function _remote_civix_navigationMenu(&$nodes)
+function _rc_mosaico_template_civix_navigationMenu(&$nodes)
 {
     if (!is_callable(['CRM_Core_BAO_Navigation', 'fixNavigationMenu'])) {
-        _remote_civix_fixNavigationMenu($nodes);
+        _rc_mosaico_template_civix_fixNavigationMenu($nodes);
     }
 }
 
@@ -440,7 +422,7 @@ function _remote_civix_navigationMenu(&$nodes)
  * Given a navigation menu, generate navIDs for any items which are
  * missing them.
  */
-function _remote_civix_fixNavigationMenu(&$nodes)
+function _rc_mosaico_template_civix_fixNavigationMenu(&$nodes)
 {
     $maxNavID = 1;
     array_walk_recursive($nodes, function ($item, $key) use (&$maxNavID) {
@@ -448,10 +430,10 @@ function _remote_civix_fixNavigationMenu(&$nodes)
             $maxNavID = max($maxNavID, $item);
         }
     });
-    _remote_civix_fixNavigationMenuItems($nodes, $maxNavID, null);
+    _rc_mosaico_template_civix_fixNavigationMenuItems($nodes, $maxNavID, null);
 }
 
-function _remote_civix_fixNavigationMenuItems(&$nodes, &$maxNavID, $parentID)
+function _rc_mosaico_template_civix_fixNavigationMenuItems(&$nodes, &$maxNavID, $parentID)
 {
     $origKeys = array_keys($nodes);
     foreach ($origKeys as $origKey) {
@@ -467,7 +449,7 @@ function _remote_civix_fixNavigationMenuItems(&$nodes, &$maxNavID, $parentID)
             $origKey = $newKey;
         }
         if (isset($nodes[$origKey]['child']) && is_array($nodes[$origKey]['child'])) {
-            _remote_civix_fixNavigationMenuItems($nodes[$origKey]['child'], $maxNavID, $nodes[$origKey]['attributes']['navID']);
+            _rc_mosaico_template_civix_fixNavigationMenuItems($nodes[$origKey]['child'], $maxNavID, $nodes[$origKey]['attributes']['navID']);
         }
     }
 }
@@ -477,9 +459,9 @@ function _remote_civix_fixNavigationMenuItems(&$nodes, &$maxNavID, $parentID)
  *
  * @link https://docs.civicrm.org/dev/en/latest/hooks/hook_civicrm_alterSettingsFolders
  */
-function _remote_civix_civicrm_alterSettingsFolders(&$metaDataFolders = null)
+function _rc_mosaico_template_civix_civicrm_alterSettingsFolders(&$metaDataFolders = null)
 {
-    $settingsDir = __DIR__ . DIRECTORY_SEPARATOR . 'settings';
+    $settingsDir = __DIR__.DIRECTORY_SEPARATOR.'settings';
     if (!in_array($settingsDir, $metaDataFolders) && is_dir($settingsDir)) {
         $metaDataFolders[] = $settingsDir;
     }
@@ -492,7 +474,7 @@ function _remote_civix_civicrm_alterSettingsFolders(&$metaDataFolders = null)
  *
  * @link https://docs.civicrm.org/dev/en/latest/hooks/hook_civicrm_entityTypes
  */
-function _remote_civix_civicrm_entityTypes(&$entityTypes)
+function _rc_mosaico_template_civix_civicrm_entityTypes(&$entityTypes)
 {
     $entityTypes = array_merge($entityTypes, []);
 }
