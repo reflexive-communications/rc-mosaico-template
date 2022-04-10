@@ -1,9 +1,9 @@
 <?php
 
 /*
- * class CRM_Remote_TemplateConfig
+ * class CRM_RcMosaicoTemplate_TemplateConfig
  */
-class CRM_Remote_TemplateConfig
+class CRM_RcMosaicoTemplate_TemplateConfig
 {
     const TEMPLATE_NAME = 'remote';
     const TEMPLATE_TITLE = 'ReMoTe';

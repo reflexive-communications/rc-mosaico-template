@@ -163,7 +163,7 @@ function remote_civicrm_themes(&$themes)
  */
 function remote_civicrm_mosaicoBaseTemplates(&$templates)
 {
-    $newTemplate = CRM_Remote_TemplateConfig::getTemplate();
+    $newTemplate = CRM_RcMosaicoTemplate_TemplateConfig::getTemplate();
     $newTemplate['path'] = E::url($newTemplate['path']);
     $newTemplate['thumbnail'] = E::url($newTemplate['thumbnail']);
     $templates[$newTemplate['name']] = $newTemplate;

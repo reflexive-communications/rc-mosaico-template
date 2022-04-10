@@ -221,7 +221,7 @@ function _remote_civix_civicrm_upgrade($op, CRM_Queue_Queue $queue = null)
  */
 function _remote_civix_upgrader()
 {
-    if (!file_exists(__DIR__ . '/CRM/Remote/Upgrader.php')) {
+    if (!file_exists(__DIR__.'/CRM/RcMosaicoTemplate/Upgrader.php')) {
         return null;
     } else {
         return CRM_Remote_Upgrader_Base::instance();
