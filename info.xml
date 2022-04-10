@@ -1,21 +1,21 @@
 <?xml version="1.0"?>
-<extension key="remote" type="module">
-    <file>remote</file>
-    <name>ReMoTe</name>
-    <description>Provides a new mosaico base template</description>
+<extension key="rc-mosaico-template" type="module">
+    <file>rc_mosaico_template</file>
+    <name>RC Mosaico template</name>
+    <description>New mosaico base template</description>
     <license>AGPL-3.0</license>
     <maintainer>
         <author>akosgarai</author>
         <email>szlem01@gmail.com</email>
     </maintainer>
     <urls>
-        <url desc="Main Extension Page">https://github.com/reflexive-communications/remote</url>
-        <url desc="Documentation">https://github.com/reflexive-communications/remote</url>
-        <url desc="Support">https://github.com/reflexive-communications/remote/issues</url>
+        <url desc="Main Extension Page">https://github.com/reflexive-communications/rc-mosaico-template</url>
+        <url desc="Documentation">https://github.com/reflexive-communications/rc-mosaico-template</url>
+        <url desc="Support">https://github.com/reflexive-communications/rc-mosaico-template/issues</url>
         <url desc="Licensing">https://www.gnu.org/licenses/agpl-3.0.html</url>
     </urls>
-    <releaseDate>2021-06-15</releaseDate>
-    <version>1.0.0</version>
+    <releaseDate>2022-04-10</releaseDate>
+    <version>1.0.1</version>
     <develStage>stable</develStage>
     <compatibility>
         <ver>5.0</ver>
@@ -27,6 +27,7 @@
         <psr4 prefix="Civi\" path="Civi"/>
     </classloader>
     <civix>
-        <namespace>CRM/Remote</namespace>
+        <namespace>CRM/RcMosaicoTemplate</namespace>
+        <angularModule>crmRcMosaicoTemplate</angularModule>
     </civix>
 </extension>
