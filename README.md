@@ -8,9 +8,9 @@ The extension is licensed under [AGPL-3.0](LICENSE.txt).
 
 ## Requirements
 
-* PHP v7.3+
-* CiviCRM v5.29+
-* Mosaico v2.6+
+-   PHP v7.3+
+-   CiviCRM v5.29+
+-   Mosaico v2.6+
 
 ## Installation (CLI, Git)
 
