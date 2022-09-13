@@ -5,10 +5,9 @@
  */
 class CRM_RcMosaicoTemplate_ConfigTest extends \PHPUnit\Framework\TestCase
 {
-
-  /**
-   * The setup() method is executed before the test is executed (optional).
-   */
+    /**
+     * The setup() method is executed before the test is executed (optional).
+     */
     public function setUp(): void
     {
         parent::setUp();
