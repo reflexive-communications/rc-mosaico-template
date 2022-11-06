@@ -24,6 +24,7 @@
         <ext>uk.co.vedaconsulting.mosaico</ext>
     </requires>
     <classloader>
+        <psr0 prefix="CRM_" path=""/>
         <psr4 prefix="Civi\" path="Civi"/>
     </classloader>
     <civix>
