@@ -38,5 +38,6 @@
     <civix>
         <namespace>CRM/RcMosaicoTemplate</namespace>
         <angularModule>crmRcMosaicoTemplate</angularModule>
+        <format>22.12.1</format>
     </civix>
 </extension>
