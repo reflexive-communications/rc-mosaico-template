@@ -18,7 +18,7 @@ class CRM_RcMosaicoTemplate_TemplateConfig
      * It returns the config of our template.
      * @return array
      */
-    public static function getTemplate()
+    public static function getTemplate(): array
     {
         return [
             'name' => self::TEMPLATE_NAME,
