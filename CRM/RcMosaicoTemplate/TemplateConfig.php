@@ -1,9 +1,8 @@
 <?php
 
-/*
+/**
  * class CRM_RcMosaicoTemplate_TemplateConfig
  */
-
 class CRM_RcMosaicoTemplate_TemplateConfig
 {
     const TEMPLATE_NAME = 'rc-base';
@@ -14,7 +13,7 @@ class CRM_RcMosaicoTemplate_TemplateConfig
 
     const TEMPLATE_THUMBNAIL = 'assets/edres/_full.png';
 
-    /*
+    /**
      * It returns the config of our template.
      * @return array
      */

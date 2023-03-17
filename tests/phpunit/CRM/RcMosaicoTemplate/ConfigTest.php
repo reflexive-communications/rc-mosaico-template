@@ -8,7 +8,7 @@ use Civi\RcMosaicoTemplate\HeadlessTestCase;
 class CRM_RcMosaicoTemplate_ConfigTest extends HeadlessTestCase
 {
     /**
-     * Check the templates after the hook function.
+     * @return void
      */
     public function testTemplates()
     {
