@@ -15,6 +15,7 @@ class CRM_RcMosaicoTemplate_TemplateConfig
 
     /**
      * It returns the config of our template.
+     *
      * @return array
      */
     public static function getTemplate(): array
