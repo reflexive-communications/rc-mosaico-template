@@ -23,11 +23,11 @@ cv en rc-mosaico-template
 ```
 
 **New base template**
-![New base template](./assets/docs/base-template.png)
+![New base template](./images/base-template.png)
 
 **The list block**
 
 ![List block](./assets/edres/listBlock.png)
 
 **Mail preview**
-![Mail review](./assets/docs/preview.png)
+![Mail review](./images/preview.png)
