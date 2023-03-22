@@ -10,9 +10,9 @@ The extension is licensed under [AGPL-3.0](LICENSE.txt).
 
 -   PHP v7.3+
 -   CiviCRM v5.29+
--   Mosaico v2.6+
+-   uk.co.vedaconsulting.mosaico
 
-## Installation (CLI, Git)
+## Installation
 
 Sysadmins and developers may clone the [Git](https://en.wikipedia.org/wiki/Git) repo for this extension and
 install it with the command-line tool [cv](https://github.com/civicrm/cv).
