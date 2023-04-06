@@ -2,6 +2,8 @@
 
 [![CI](https://github.com/reflexive-communications/rc-mosaico-template/actions/workflows/main.yml/badge.svg)](https://github.com/reflexive-communications/rc-mosaico-template/actions/workflows/main.yml)
 
+**THIS REPO HAS BEEN ARCHIVED!**
+
 This extension installs a new base template to Mosaico email template editor extension.
 The template is based on the `versafix-1` template, but the `p` html tags have been replaced with `div`.
 It was necessary to support the align of the texts.
